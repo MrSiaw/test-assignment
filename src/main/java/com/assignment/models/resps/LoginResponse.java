@@ -58,11 +58,11 @@ public class LoginResponse {
         this.userInfo = userInfo;
     }
 
-    public boolean isSuccessfull() {
+    public boolean getIsSuccessfull() {
         return isSuccessfull;
     }
 
-    public void setSuccessfull(boolean successfull) {
+    public void setIsSuccessfull(boolean successfull) {
         isSuccessfull = successfull;
     }
 
