@@ -2,8 +2,7 @@
 <suite name="Login Test Suite" parallel="methods" thread-count="5" verbose="1">
     <test name="Login Tests">
         <classes>
-            <class name="test.web.events.EventListTest"/>
-            <class name="test.web.login.LoginTest"/>
+            <class name="test.rest.LoginRestTest"/>
         </classes>
     </test>
 </suite>
