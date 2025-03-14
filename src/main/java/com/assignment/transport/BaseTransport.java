@@ -1,6 +1,6 @@
 package com.assignment.transport;
 
-import com.assignment.utils.JacksonMapper;
+import com.assignment.utils.JsonUtil;
 import io.restassured.response.Response;
 
 import static com.assignment.config.Config.BASE_URL_API;
@@ -24,7 +24,7 @@ public abstract class BaseTransport {
      * @param <T>
      */
     public static <T> T jsonToObject(Response response, Class<T> clazz) {
-        return JacksonMapper.jsonToObject(response.asPrettyString(), clazz);
+        return JsonUtil.jsonToObject(response.asPrettyString(), clazz);
     }
 
 }
