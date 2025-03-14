@@ -38,4 +38,14 @@ public class LoginRequest {
         return password;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "isPrePaid=" + isPrePaid +
+                ", registrationType=" + registrationType +
+                ", userName='" + userName + '\'' +
+                ", phoneCountryCode='" + phoneCountryCode + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
