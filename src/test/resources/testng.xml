@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Login Test Suite" parallel="methods" thread-count="5" verbose="1">
+    <test name="Login Tests">
+        <classes>
+            <class name="test.web.events.EventListTest"/>
+            <class name="test.web.login.LoginTest"/>
+        </classes>
+    </test>
+</suite>
