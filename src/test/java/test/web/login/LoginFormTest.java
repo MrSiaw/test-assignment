@@ -11,9 +11,9 @@ import test.web.BaseWebTest;
 
 @Epic("welcome") //login+register, for example
 @Story("login")
-public class LoginTest extends BaseWebTest {
+public class LoginFormTest extends BaseWebTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoginFormTest.class);
 
     private static final String VALID_USER_PHONE = "962323422";
     private static final String INVALID_USER_PHONE = "962323422";
