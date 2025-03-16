@@ -20,7 +20,7 @@ public class AuthenticationClient extends BaseClient {
         return given()
                 .contentType(ContentType.JSON)
                 .body(requestModel)
-                //can be added to config
+                //TODO should be form props file/config
                 .header("brandid",30)
                 .header("channelid", 1)
                 .when()
