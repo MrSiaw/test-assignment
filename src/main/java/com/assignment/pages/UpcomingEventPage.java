@@ -9,9 +9,9 @@ import org.testng.Assert;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
+import static com.assignment.utils.JsExecutorUtil.scrollToElement;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -50,7 +50,9 @@ public class UpcomingEventPage extends BasePage {
 
     @Step("select sort time '{timeSort}'")
     public UpcomingEventPage pickSortByTime(TimeSort timeSort) {
-        sortByTime.click();
+        sortByTime
+                .should(enabled)
+                .click();
         sortByTime
                 .find(By.xpath(String.format(".//*[text()='%s']", timeSort.buttonText)))
                 .click();
