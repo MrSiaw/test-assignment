@@ -76,6 +76,29 @@ public class LoginFormTest extends BaseWebTest {
         failedLoginWithError(VALID_USER_PHONE, "", ERROR_EMPTY_PASS);
     }
 
+    //State & Transition
+    @Test
+    public void loginButtonEnable() {
+        //open login form
+        //form are clear (expect for phone code)
+        //login button should be disabled
+        //fill the phone number with valid
+        //login button should be disabled
+        //fill the pass with valid
+        //login button should be enabled
+        //it looks enabled even with empty form, is ot okay?
+    }
+
+    //State & Transition
+    @Test
+    public void phoneCodeIsPreFilled() {
+        //open login form
+        //phone code is prefilled
+
+        //still don't know where it comes fromm could add Equivalence test if we can change country and it affects phone code
+        //vpn didn't help, I believe it depends on a brand, this specific brand is for Zambia
+    }
+
     //Could be checks for login attempts, but couldn't find valid phone to find
 
     //Phone field validation
@@ -87,6 +110,7 @@ public class LoginFormTest extends BaseWebTest {
     // X+1; false
     @Test
     public void phoneFieldValidation() {
+        //open login form
         // input given phone number (arg1)
         // error message should (not) be displayed (arg2)
     }
@@ -102,6 +126,7 @@ public class LoginFormTest extends BaseWebTest {
     // 985555555; true
     @Test
     public void phoneFieldPrefixValidation() {
+        //open login form
         // input given phone number (arg1)
         // error message with text 'Mobile provider prefix is not correct.' should(not) be displayed (arg2)
     }
@@ -114,6 +139,7 @@ public class LoginFormTest extends BaseWebTest {
     // ' 2 3 4'; '234' //again, not actual behavior
     @Test
     public void phoneFieldFormat() {
+        //open login form
         // input given string into phone number (arg1)
         // get phone number field text and assert with expected (arg2)
     }
@@ -130,6 +156,7 @@ public class LoginFormTest extends BaseWebTest {
     // string_with_length_17; "The password must be maximum 16 characters."
     @Test
     public void passwordFieldValidation() {
+        //open login form
         // input given password (arg1)
         // error message should (not) be displayed with text (arg2)
     }
@@ -142,6 +169,7 @@ public class LoginFormTest extends BaseWebTest {
     // ' 2 3 4'; '234' //again, not actual behavior, a space in a password is okay?
     @Test
     public void passwordFieldFormat() {
+        //open login form
         // input given string into password (arg1)
         // get password field text and assert with expected (arg2)
     }
@@ -169,5 +197,15 @@ public class LoginFormTest extends BaseWebTest {
         //separated tests
         //1. phone field
         //2. pass field
+    }
+
+    //State & Transition?
+    @Test
+    public void filledFormRefresh() {
+        //open the login form
+        //fill the form with valid data
+        //refresh the page
+        //pass field should be empty
+        //phone filed is empty, but it could be a good thing to keep the phone number after refresh (negotiable)
     }
 }
