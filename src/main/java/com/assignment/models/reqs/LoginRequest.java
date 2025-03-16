@@ -1,51 +1,25 @@
 package com.assignment.models.reqs;
 
+import com.assignment.config.Config;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.extern.jackson.Jacksonized;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Jacksonized
+@Builder
+@Data
+@AllArgsConstructor
 public class LoginRequest {
-    private Boolean isPrePaid;
-    private Integer registrationType;
-    private String userName;
-    private String phoneCountryCode;
-    private String password;
+    Boolean isPrePaid;
+    Integer registrationType;
+    String userName;
+    String phoneCountryCode;
+    String password;
 
-    public LoginRequest(Boolean isPrePaid, Integer registrationType, String userName, String phoneCountryCode, String password) {
-        this.isPrePaid = isPrePaid;
-        this.registrationType = registrationType;
-        this.userName = userName;
-        this.phoneCountryCode = phoneCountryCode;
-        this.password = password;
-    }
-
-    public Boolean isPrePaid() {
-        return isPrePaid;
-    }
-
-    public Integer getRegistrationType() {
-        return registrationType;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getPhoneCountryCode() {
-        return phoneCountryCode;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-                "isPrePaid=" + isPrePaid +
-                ", registrationType=" + registrationType +
-                ", userName='" + userName + '\'' +
-                ", phoneCountryCode='" + phoneCountryCode + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public static LoginRequest initDefault() {
+        return new LoginRequest(false, 2, "965234324", Config.DEFAULT_PHONE_CODE, "password");
     }
 }
