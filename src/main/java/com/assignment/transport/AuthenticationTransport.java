@@ -7,10 +7,21 @@ import io.qameta.allure.Step;
 
 public class AuthenticationTransport extends BaseTransport {
 
-    private static final AuthenticationClient client = new AuthenticationClient(getServiceUrl("Authentication"));
+    private static final ThreadLocal<AuthenticationClient> client = new ThreadLocal<>();
+
+    public static AuthenticationClient getClient() {
+        if (client.get() == null) {
+            client.set(new AuthenticationClient(getServiceUrl("Authentication")));
+        }
+        return client.get();
+    }
 
     @Step("POST /LoginUser")
     public static LoginResponse login(LoginRequest request) {
-        return jsonToObject(client.login(request), LoginResponse.class);
+        return jsonToObject(getClient().login(request), LoginResponse.class);
+    }
+
+    public static void removeClient() {
+        client.remove();
     }
 }
