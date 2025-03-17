@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 import test.web.BaseWebTest;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Epic("events")
 @Story("upcoming")
@@ -21,7 +21,7 @@ public class UpcomingEventListTest extends BaseWebTest {
     public void upcomingEventsFilter() {
         UpcomingEventPage upcomingEventPage = new UpcomingEventPage();
         upcomingEventPage.open();
-        HashMap <String, List<String>> str = upcomingEventPage
+        Map <String, List<Double>> str = upcomingEventPage
                 .pickSortByTime(UpcomingEventPage.TimeSort.BY_3_HOURS)
                 .loadAllEvents()
                 .getEventRowsWithOdds();
@@ -38,7 +38,7 @@ public class UpcomingEventListTest extends BaseWebTest {
                         .stream()
                         .allMatch(odd -> {
                             try {
-                                return Double.parseDouble(odd) >= 1.50d && Double.parseDouble(odd) <= 3.34d;
+                                return odd >= 1.50d && odd <= 3.34d;
                             } catch (NumberFormatException exception) {
                                 throw new AssertionError("Can't convert given odd to double: " + odd);
                             }
