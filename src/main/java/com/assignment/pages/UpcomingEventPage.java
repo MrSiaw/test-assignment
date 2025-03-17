@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static com.assignment.utils.JsExecutorUtil.scrollToElement;
@@ -56,6 +56,8 @@ public class UpcomingEventPage extends BasePage {
         sortByTime
                 .find(By.xpath(String.format(".//*[text()='%s']", timeSort.buttonText)))
                 .click();
+        //wait to reload
+        sleep(2_000);
         return this;
     }
 
@@ -65,9 +67,9 @@ public class UpcomingEventPage extends BasePage {
      */
     @Step("load all events")
     public UpcomingEventPage loadAllEvents() {
-        int maxAttempts = 15; // Ограничение на количество итераций
+        int maxAttempts = 15;
         int attempts = 0;
-        while (showMore.exists() && attempts < maxAttempts) {
+        while (showMore.exists() && showMore.isDisplayed() && attempts < maxAttempts) {
             int countBefore = gameIds.size();
             scrollToElement(showMore);
             showMore.click();
@@ -79,18 +81,32 @@ public class UpcomingEventPage extends BasePage {
         return this;
     }
 
-    public HashMap<String, List<String>> getEventRowsWithOdds() {
+    public Map<String, List<Double>> getEventRowsWithOdds() {
+        checkIdDuplicates();
         ElementsCollection elements = $$x("//*[@class='event-row']");
-        return (HashMap<String, List<String>>) elements.stream()
+        return elements.stream()
                 .collect(Collectors.toMap(
                         el -> el.$$x(".//following-sibling::tr//span[@class='event-gameId']").first().text(), // Получаем id элемента
-                        el -> el.$$x(".//*[@class='odd-content notranslate']").texts()
+                        el -> el.$$x(".//*[@class='odd-content notranslate']").texts().stream().mapToDouble(Double::parseDouble).boxed().collect(Collectors.toList())
                 ));
     }
 
+    //I think that this game id supposed to be unique
+    //So the methods assert duplicates
+    private void checkIdDuplicates() {
+        gameIds.stream()
+                .collect(Collectors.groupingBy(SelenideElement::text, Collectors.counting()))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue() > 1)
+                .findFirst()
+                .ifPresent(entry -> {
+                    throw new AssertionError("Found duplicate game ids: " + entry.getKey());
+                });
+    }
 
     public enum TimeSort {
         //better to receive text from dictionary
+        TODAY("Today"),
         BY_3_HOURS("Next 3 hours");
 
         public final String buttonText;
