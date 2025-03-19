@@ -1,5 +1,6 @@
 package com.assignment.models.resps;
 
+import com.assignment.models.JsonNullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,12 +14,17 @@ public class LoginResponse {
 
     //fpr some field don't know their type, guess String mostly
     //for generating pojo used online pojo generator
-    Object token;
+    @JsonNullable
+    String token;
     Result result;
-    Object data;
-    Object dataStructure;
-    Object additionalData;
-    Object userInfo;
+    @JsonNullable
+    String data;
+    @JsonNullable
+    String dataStructure;
+    @JsonNullable
+    String additionalData;
+    @JsonNullable
+    String userInfo;
     boolean isSuccessfull;
 
     //deafult name for setter method "setSuccessfull" which cause exception
@@ -29,15 +35,18 @@ public class LoginResponse {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    //@Builder
-    public class Result{
+    public static class Result{
         String errorDescription;
-        Object additionalInfo;
-        Object eventData;
-        Object closedOdds;
+        @JsonNullable
+        String additionalInfo;
+        @JsonNullable
+        String eventData;
+        @JsonNullable
+        String closedOdds;
         int errorCode;
         int resultCode;
-        Object errorCodeDescription;
+        @JsonNullable
+        String errorCodeDescription;
     }
 
 }

@@ -23,7 +23,7 @@ dependencies {
     implementation("io.qameta.allure:allure-testng:2.11.2")
     implementation("io.rest-assured:rest-assured:5.4.0")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.3")
-    implementation("com.github.victools:jsonschema-generator:4.37.0")
+    implementation("com.fasterxml.jackson.module:jackson-module-jsonSchema:2.15.0")
     implementation("com.github.java-json-tools:json-schema-validator:2.2.14")
     compileOnly("org.projectlombok:lombok:1.18.36")
     annotationProcessor("org.projectlombok:lombok:1.18.36")

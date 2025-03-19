@@ -57,6 +57,7 @@ public class UpcomingEventPage extends BasePage {
                 .find(By.xpath(String.format(".//*[text()='%s']", timeSort.buttonText)))
                 .click();
         //wait to reload
+        //couldn't find loader element
         sleep(2_000);
         return this;
     }

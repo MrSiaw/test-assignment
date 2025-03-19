@@ -34,9 +34,6 @@ public class LoginRestTest {
         LoginResponse loginResponse = AuthenticationTransport
                 .login(LoginRequest.initDefault());
         JsonUtil.validateJsonScheme(JsonUtil.getJsonSchema(LoginResponse.class), objectToJson(loginResponse));
-        //we can auto-generate json scheme from class, but we need the specification for the response body
-        //couldn't find the best lib for auto-generating, in general, com.github.victools:jsonschema-generator works
-        //also can generate it manually via online tools
     }
 
 }
