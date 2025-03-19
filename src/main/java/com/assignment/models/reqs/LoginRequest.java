@@ -20,6 +20,7 @@ public class LoginRequest {
     String password;
 
     public static LoginRequest initDefault() {
+        //could be defined in some data provider class
         return new LoginRequest(false, 2, "965234324", Config.DEFAULT_PHONE_CODE, "password");
     }
 }
